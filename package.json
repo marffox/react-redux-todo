@@ -1,7 +1,7 @@
 {
   "name": "React Todo",
   "version": "1.0.0",
-  "description": "Simple react todo app",
+  "description": "Simple react Todo App",
   "main": "index.js",
   "scripts": {
     "test": "karma start",
