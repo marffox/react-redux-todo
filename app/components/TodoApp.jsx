@@ -1,34 +1,22 @@
 var React = require('react');
+var uuid = require('node-uuid');//genera id aleatorios y unicos para usarlos como identificadores de cada todo en este caso
+
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
 var TodoSearch = require('TodoSearch');
-var uuid = require('node-uuid');//genera id aleatorios y unicos para usarlos como identificadores de cada todo en este caso
+var TodoAPI = require('TodoAPI');
+
 
 var TodoApp = React.createClass({
 	getInitialState: function() {
 		return {
 			showCompleted: false,
 			searchText: '',
-			todos: [
-				{
-					id: uuid(),
-					text: 'Pasear al perro',
-					completed: false
-				}, {
-					id: uuid(),
-					text: 'Comprar la cena',
-					completed: false
-				}, {
-					id: uuid(),
-					text: 'Limpiar la casa',
-					completed: true
-				}, {
-					id: uuid(),
-					text: 'Lavar la moto',
-					completed: true
-				}
-			]
+			todos: TodoAPI.getTodos()
 		}
+	},
+	componentDidUpdate: function () {//ejecuta despues de que los props o state cambien 
+		TodoAPI.setTodos(this.state.todos);
 	},
 	handleAddTodo: function(text) {
 		this.setState({
