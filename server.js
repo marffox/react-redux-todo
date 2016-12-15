@@ -1,4 +1,5 @@
 var express = require('express');
+var open = require('open');
 
 // Create our app
 var app = express();
@@ -16,4 +17,6 @@ app.use(express.static('public'));
 
 app.listen(PORT, function () {
   console.log('Express server is up on port ' + PORT);
+  console.log('Launching browser...');
+  open('http://localhost:' + PORT);
 });
