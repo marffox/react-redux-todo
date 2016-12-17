@@ -1,7 +1,8 @@
 var React = require('react');
-var Todo = require('Todo');
+var {connect} = require('react-redux');//connect conecta este componente con Provider
+import Todo from 'Todo';
 
-var TodoList = React.createClass({
+export var TodoList = React.createClass({
 	render: function() {
 		var {todos} = this.props;
 		var renderTodos = () => {
@@ -12,7 +13,7 @@ var TodoList = React.createClass({
 			};
 			return todos.map((todo) => {
 				return (
-					<Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+					<Todo key={todo.id} {...todo}/>
 					//con los ... le estamos pasando las propiedades de cada todo
 				);
 			});
@@ -24,5 +25,11 @@ var TodoList = React.createClass({
 		);
 	}
 });
-
-module.exports = TodoList;
+//la forma de conectar redux con los componentes individuales es asi:
+export default connect(
+	(state) => {
+		return {
+			todos: state.todos //obtenemos el estado de todos
+		}
+	}
+)(TodoList);
