@@ -23,7 +23,7 @@ $(document).foundation();
 require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
-   <Provider store={store}>//damos acceso a todos los componentes hijos al store
+   <Provider store={store}>{/*damos acceso a todos los componentes hijos al store*/}
    		<TodoApp/>
    </Provider>,
 
