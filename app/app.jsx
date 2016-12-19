@@ -12,10 +12,6 @@ store.subscribe(() => {
 	console.log('New state', store.getState());
 });
 
-store.dispatch(actions.addTodo('cortar el cesped'));
-store.dispatch(actions.setSearchText('cesped'));
-store.dispatch(actions.toggleShowCompleted());
-
 // Load foundation
 $(document).foundation();
 
