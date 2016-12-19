@@ -1,4 +1,4 @@
-var uuid = require('node-uuid');
+var uuid = require('node-uuid');//genera id aleatorios y unicos para usarlos como identificadores de cada todo en este caso
 var moment = require('moment');
 
 export var searchTextReducer = (state = '', action) => {
@@ -31,6 +31,11 @@ export var todosReducer = (state = [], action) => {
 					createdAt: moment().unix(),
 					completedAt: undefined
 				}
+			];
+		case 'ADD_TODOS':
+			return [
+				...state,
+				...action.todos
 			];
 		case 'TOGGLE_TODO':
 			return state.map((todo) => {

@@ -1,33 +1,11 @@
 var React = require('react');
-var uuid = require('node-uuid');//genera id aleatorios y unicos para usarlos como identificadores de cada todo en este caso
-var moment = require('moment');
 
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
-var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
-	getInitialState: function() {
-		return {
-			showCompleted: false,
-			searchText: '',
-			todos: TodoAPI.getTodos()
-		}
-	},
-	componentDidUpdate: function () {//ejecuta despues de que los props o state cambien
-		TodoAPI.setTodos(this.state.todos);
-	},
-	handleSearch: function(showCompleted, searchText) {
-		this.setState({
-			showCompleted: showCompleted,
-			searchText: searchText.toLowerCase()
-		});
-	},
 	render: function() {
-		var {todos, showCompleted, searchText} = this.state;
-		var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
-
 		return (
 			<div>
 				<h1 className="page-title">Todo App</h1>

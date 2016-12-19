@@ -15,7 +15,7 @@ module.exports = {
 		try {
 			todos = JSON.parse(stringTodos);
 		} catch(e) {//en caso de error
-			//lo dejamos en blanco ya que por defecto devolveria un array vacio 
+			//lo dejamos en blanco ya que por defecto devolveria un array vacio
 		}
 
 		return $.isArray(todos) ? todos : [];
