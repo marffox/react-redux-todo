@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Simple react Todo App",
   "main": "index.js",
+  "engines": {
+    "node": "6.9.2",
+    "npm": "3.10.9"
+  },
   "scripts": {
     "test": "karma start",
     "start": "node server.js"
