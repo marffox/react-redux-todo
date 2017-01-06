@@ -63,7 +63,7 @@ export var startToggleTodo = (id, completed) => {
 			completedAt: completed ? moment().unix() : null
 		};
 
-		todoRef.update(updates).then(() => {
+		return todoRef.update(updates).then(() => {
 			dispatch(updateTodo(id, updates));
 		});
 	}
