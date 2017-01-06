@@ -10,14 +10,17 @@ var TodoAPI = require('TodoAPI');
 
 //import './../playground/firebase/index';
 
+/*ESTO ES SOLO PARA TRABAJAR CON LOCALSTORE:
 store.subscribe(() => {
 	var state = store.getState();
 	console.log('New state', state);
-	//TodoAPI.setTodos(state.todos);
+	TodoAPI.setTodos(state.todos);
 });
 
 var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.addTodos(initialTodos));*/
+
+store.dispatch(actions.startAddTodos());
 
 // Load foundation
 $(document).foundation();
