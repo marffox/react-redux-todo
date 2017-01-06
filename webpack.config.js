@@ -17,11 +17,11 @@ module.exports = {
 			'$': 'jquery',
 			'jQuery': 'jquery'
 		}),
-	  new webpack.optimize.UglifyJsPlugin({
-		compressor: {
-		  warnings: false//optimiza el bundle excluyendo los warnings, es como poner webpack -p
-		}
-	  })
+	  	new webpack.optimize.UglifyJsPlugin({
+			compressor: {
+		  		warnings: false//optimiza el bundle excluyendo los warnings, es como poner webpack -p
+			}
+	  	})
 	],
 	output: {
 		path: __dirname,
@@ -32,14 +32,14 @@ module.exports = {
 		modulesDirectories: [
 			'node_modules',
 			'./app/components',
-		'./app/api'
+			'./app/api'
 		],
 		alias: {
-		app: 'app',
+			app: 'app',
 			applicationStyles: 'app/styles/app.scss',
-		actions: 'app/actions/actions.jsx',
-		reducers: 'app/reducers/reducers.jsx',
-		configureStore: 'app/store/configureStore.jsx'
+			actions: 'app/actions/actions.jsx',
+			reducers: 'app/reducers/reducers.jsx',
+			configureStore: 'app/store/configureStore.jsx'
 		},
 		extensions: ['', '.js', '.jsx']
 	},
