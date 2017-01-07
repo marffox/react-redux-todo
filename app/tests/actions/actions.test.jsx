@@ -44,23 +44,6 @@ describe('Actions', () => {
 		expect(res).toEqual(action);
 	});
 
-	it('Should create todo and dispatch ADD_TODO', (done) => {//si trabajamos de forma asincrona, usamos done para indicar a karma que no deje de escuchar cuando termine el test, solo hasta que llamemos a done().
-		const store = createMockStore({});
-		const todoText = 'My todo item';
-
-		store.dispatch(actions.startAddTodo(todoText)).then(() => {
-			const actions = store.getActions();//retorna un array con todos los actions de mock store
-
-			expect(actions[0]).toInclude({
-				type: 'ADD_TODO'
-			});
-			expect(actions[0].todo).toInclude({
-				text: todoText
-			});
-			done();//termina el test
-		}).catch(done);
-	});
-
 	it('Should generate add todos action object', () => {
 		var todos = [{
 			id: '111',
@@ -110,20 +93,25 @@ describe('Actions', () => {
 
 	describe('Tests with firebase Todos', () => {
 		var testTodoRef;
+		var uid;
+		var todosRef;
 
 		//beforeEach (async test from mocha) se ejecuta antes de cada uno de los unit test
 		//creamos un todo y lo guardamos en firebase
 		beforeEach((done) => {
-			var todosRef = firebaseRef.child('todos');
+			firebase.auth().signInAnonymously().then((user) => {
+				uid = user.uid;
+				todosRef = firebaseRef.child(`users/${uid}/todos`);
 
-			todosRef.remove().then(() => {
-				testTodoRef = firebaseRef.child('todos').push();
+				return todosRef.remove();
+			}).then(() => {
+				testTodoRef = todosRef.push();
 
 				return testTodoRef.set({
 					text: 'Something to do',
 					completed: false,
 					createdAt: 1234566
-				})
+				});
 			})
 			.then(() => done())//cuando arrow func tiene solo una linea, podemos omitir los {}
 			.catch(done);
@@ -131,11 +119,11 @@ describe('Actions', () => {
 		//beforeEach se ejecuta despues de cada uno de los unit test
 		//borramos el todo introducido antes
 		afterEach((done) => {
-			testTodoRef.remove().then(() => done());
+			todosRef.remove().then(() => done());
 		});
 
 		it('Should toggle todo and dispatch UPDATE_TODO action', (done) => {
-			const store = createMockStore({});
+			const store = createMockStore({auth: {uid}});//igual que: auth: {uid: uid}
 			const action = actions.startToggleTodo(testTodoRef.key, true);
 
 			store.dispatch(action).then(() => {
@@ -153,7 +141,7 @@ describe('Actions', () => {
 			}, done);
 		});
 		it('Should populate todos and dispatch ADD_TODOS', (done) => {
-			const store = createMockStore({});
+			const store = createMockStore({auth: {uid}});
 			const action = actions.startAddTodos();
 
 			store.dispatch(action).then(() => {
@@ -164,6 +152,22 @@ describe('Actions', () => {
 				expect(mockActions[0].todos[0].text).toEqual('Something to do');
 				done();
 			}, done);
+		});
+		it('Should create todo and dispatch ADD_TODO', (done) => {//si trabajamos de forma asincrona, usamos done para indicar a karma que no deje de escuchar cuando termine el test, solo hasta que llamemos a done().
+			const store = createMockStore({auth: {uid}});
+			const todoText = 'My todo item';
+
+			store.dispatch(actions.startAddTodo(todoText)).then(() => {
+				const actions = store.getActions();//retorna un array con todos los actions de mock store
+
+				expect(actions[0]).toInclude({
+					type: 'ADD_TODO'
+				});
+				expect(actions[0].todo).toInclude({
+					text: todoText
+				});
+				done();//termina el test
+			}).catch(done);
 		});
 	});
 });
