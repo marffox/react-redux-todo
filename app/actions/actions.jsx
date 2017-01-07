@@ -22,14 +22,15 @@ export var addTodo = (todo) => {
 };
 //los actions generatos devuelven siempre un objeto y para trabajar con firebase de forma asincrona, necesitamos que devuelva una funcion en lugar de un objeto. Una funcion en la que pueda usar el dispatch cuando lo necesite.
 export var startAddTodo = (text) => {
-	return (dispatch, getState) => {
+	return (dispatch, getState) => {//getState devuelve el state actual de la applicacion de Redux store
 		var todo = {
 			text,
 			completed: false,
 			createdAt: moment().unix(),
 			completedAt: null
 		};
-		var todoRef = firebaseRef.child('todos').push(todo);
+		var uid = getState().auth.uid;
+		var todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
 
 		return todoRef.then(() => {
 			dispatch(addTodo({
@@ -69,7 +70,8 @@ y nosotros lo queremos asi:
 }]*/
 export var startAddTodos = () => {
 	return (dispatch, getState) => { //the thunk fuction
-		var todosRef = firebaseRef.child('todos');
+		var uid = getState().auth.uid;
+		var todosRef = firebaseRef.child(`users/${uid}/todos`);
 
 		return todosRef.once('value').then((snapshot) => {//snapshot contiene toda la informacion de la bbdd que necesito, pero me interesan los values and keys
 			var todos = snapshot.val() || {}; //obtengo los datos y si no hay datos un objeto vacio
@@ -97,7 +99,8 @@ export var updateTodo = (id, updates) => {
 
 export var startToggleTodo = (id, completed) => {
 	return (dispatch, getState) => {
-		var todoRef = firebaseRef.child(`todos/${id}`);//es lo mismo que ('todos/' + id)
+		var uid = getState().auth.uid;
+		var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);//es lo mismo que ('todos/' + id)
 		var updates = {
 			completed,
 			completedAt: completed ? moment().unix() : null
