@@ -1,10 +1,11 @@
-var React = require('react');
-var {connect} = require('react-redux');//connect conecta este componente con Provider
-import Todo from 'Todo';
-var TodoAPI = require('TodoAPI');
+import React from 'react';
+import {connect} from 'react-redux';//connect conecta este componente con Provider
 
-export var TodoList = React.createClass({
-	render: function() {
+import Todo from 'Todo';
+import * as TodoAPI from 'TodoAPI';
+
+export class TodoList extends React.Component {
+	render () {
 		var {todos, showCompleted, searchText} = this.props;
 		var renderTodos = () => {
 			var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
@@ -26,7 +27,7 @@ export var TodoList = React.createClass({
 			</div>
 		);
 	}
-});
+};
 //la forma de conectar redux con los componentes individuales es asi:
 export default connect(
 	(state) => {

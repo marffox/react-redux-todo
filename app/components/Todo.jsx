@@ -1,10 +1,11 @@
-var React = require('react');
-var {connect} = require('react-redux');
-var moment = require('moment');
-var actions = require('actions');
+import React from 'react';
+import {connect} from 'react-redux';
+import moment from 'moment';
 
-export var Todo = React.createClass({
-	render: function() {
+import * as actions from 'actions';
+
+export class Todo extends React.Component {
+	render () {
 		var {id, text, completed, createdAt, completedAt, dispatch} = this.props;
 		//var completed = this.props.completed;
 		var todoClassName = completed ? 'todo todo-completed' : 'todo';
@@ -33,7 +34,7 @@ export var Todo = React.createClass({
 			</div>
 		);
 	}
-});
+};
 // var somevar = require(); ---> somevar is the default
 export default connect()(Todo);//conectamos Todo component con el store
 //aqui no necesitamos llamar al state porque todo lo que necesitamos es el todo, que lo cogemos de todoList
