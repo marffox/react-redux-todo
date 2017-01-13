@@ -20,8 +20,8 @@ export class AddTodo extends React.Component {
 		return (
 			<div className="container__footer">
 				<form onSubmit={this.handleSubmit.bind(this)}>
-					<input type="text" ref="todoText" placeholder="What do you need to do?"/>
-					<button className="button expanded">Add Todo</button>
+					<input type="text" ref="todoText" placeholder="What do you need to buy?"/>
+					<button className="button expanded">Add product</button>
 				</form>
 			</div>
 		);

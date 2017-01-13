@@ -10,7 +10,7 @@ export class TodoSearch extends React.Component {
 		return (
 			<div className="container__header">
 				<div>
-					<input type="search" ref="searchText" placeholder="Search todos" value={searchText} onChange={() => {
+					<input type="search" ref="searchText" placeholder="Search products" value={searchText} onChange={() => {
 							{/*el codigo que ejecutamos cuando el imput cambia*/}
 							var searchText = this.refs.searchText.value;
 							dispatch(actions.setSearchText(searchText));
@@ -22,7 +22,7 @@ export class TodoSearch extends React.Component {
 						<input type="checkbox" ref="showCompleted" checked={showCompleted} onChange={() => {
 							dispatch(actions.toggleShowCompleted());
 						}}/>
-						Show completed todos
+						Show completed products
 					</label>
 				</div>
 			</div>
