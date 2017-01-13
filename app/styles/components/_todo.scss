@@ -17,7 +17,16 @@
 		background: #f0f0f0;
 	}
 
-	&__subtext {
+	&__item {
+		&-button-action {
+			flex: 1;
+			.button {
+				margin: 0;
+			}
+		}
+	}
+
+	&-subtext {
 		color: #999;
 	}
 
