@@ -7,7 +7,7 @@ import TodoSearch from 'TodoSearch';
 import * as actions from 'actions';
 
 export class TodoApp extends React.Component {
-	onLogout (e) {//igual que onLogout: function() {}
+	onLogout (e) {
 		var {dispatch} = this.props;
 		e.preventDefault();
 

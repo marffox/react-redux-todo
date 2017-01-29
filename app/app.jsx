@@ -7,21 +7,7 @@ var actions = require('actions');
 var store = require('configureStore').configure();
 import router from 'app/router/';
 import firebase from 'app/firebase/';
-// var TodoAPI = require('TodoAPI');
 
-//import './../playground/firebase/index';
-
-/*ESTO ES SOLO PARA TRABAJAR CON LOCALSTORE:
-store.subscribe(() => {
-	var state = store.getState();
-	console.log('New state', state);
-	TodoAPI.setTodos(state.todos);
-});
-
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));*/
-
-//parametro user: si hay user el state es login y si no es que es logout
 firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
 		store.dispatch(actions.login(user.uid));
@@ -40,7 +26,7 @@ $(document).foundation();
 require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
-	<Provider store={store}>{/*damos acceso a todos los componentes hijos al store*/}
+	<Provider store={store}>
 		{router}
 	</Provider>,
 	document.getElementById('app')

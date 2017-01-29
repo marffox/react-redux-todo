@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';//connect conecta este componente con Provider
+import {connect} from 'react-redux';
 
 import Todo from 'Todo';
 import * as TodoAPI from 'TodoAPI';
@@ -17,7 +17,6 @@ export class TodoList extends React.Component {
 			return filteredTodos.map((todo) => {
 				return (
 					<Todo key={todo.id} {...todo}/>
-					//con los ... le estamos pasando las propiedades de cada todo
 				);
 			});
 		};
@@ -28,7 +27,7 @@ export class TodoList extends React.Component {
 		);
 	}
 };
-//la forma de conectar redux con los componentes individuales es asi:
+
 export default connect(
 	(state) => {
 		return state;

@@ -1,4 +1,4 @@
-//var uuid = require('node-uuid');//genera id aleatorios y unicos para usarlos como identificadores de cada todo en este caso
+
 import moment from 'moment';
 
 export var searchTextReducer = (state = '', action) => {
@@ -36,7 +36,7 @@ export var todosReducer = (state = [], action) => {
 				if (todo.id === action.id) {
 					return {
 						...todo,
-						...action.updates//cuando ponemos un ... a continuacion de otro, este ultimo va a sobreescribir todas las propiedades del primero
+						...action.updates
 					}
 				} else {
 					return todo;

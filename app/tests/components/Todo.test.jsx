@@ -24,7 +24,7 @@ describe('Todo', () => {
 		var todo = TestUtils.renderIntoDocument(<Todo {...todoData} dispatch={spy}/>);
 		var $el = $(ReactDOM.findDOMNode(todo));
 
-		TestUtils.Simulate.click($el[0]);//es el div de Todo.jsx donde esta el onClick
+		TestUtils.Simulate.click($el[0]);
 
 		expect(spy).toHaveBeenCalledWith(action)
 	});

@@ -4,7 +4,7 @@ var TestUtils = require('react-addons-test-utils');
 var expect = require('expect');
 var $ = require('jquery');
 
-import {TodoSearch} from 'TodoSearch';//este {TodoSearch} hace referencia al TodoSearch que devuelve el export en el componente
+import {TodoSearch} from 'TodoSearch';
 
 describe('TodoSearch', () => {
 	it('should exist', () => {

@@ -15,7 +15,6 @@ export class Todo extends React.Component {
   	}
 	render () {
 		var {text, completed, createdAt, completedAt} = this.props;
-		//var completed = this.props.completed;
 		var todoClassName = completed ? 'todo todo-completed' : 'todo';
 		var renderDate = () => {
 			var message = 'Created ';
@@ -44,6 +43,5 @@ export class Todo extends React.Component {
 		);
 	}
 };
-// var somevar = require(); ---> somevar is the default
-export default connect()(Todo);//conectamos Todo component con el store
-//aqui no necesitamos llamar al state porque todo lo que necesitamos es el todo, que lo cogemos de todoList
+
+export default connect()(Todo);

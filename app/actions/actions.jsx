@@ -1,5 +1,5 @@
 import moment from 'moment';
-import firebase, {firebaseRef, githubProvider} from 'app/firebase/';//si el fichero se llama index.js pordemos omitirlo
+import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
 
 export var setSearchText = (searchText) => {
 	return {
@@ -20,9 +20,9 @@ export var addTodo = (todo) => {
 		todo
 	}
 };
-//los actions generatos devuelven siempre un objeto y para trabajar con firebase de forma asincrona, necesitamos que devuelva una funcion en lugar de un objeto. Una funcion en la que pueda usar el dispatch cuando lo necesite.
+
 export var startAddTodo = (text) => {
-	return (dispatch, getState) => {//getState devuelve el state actual de la applicacion de Redux store
+	return (dispatch, getState) => {
 		var todo = {
 			text,
 			completed: false,
@@ -66,34 +66,14 @@ export var addTodos = (todos) => {
 	}
 };
 
-/*Hay que transformar los datos traidos de la bbdd en validos para la aplicacion:
-Firebase los siver asi:
-var todos =  {
-	'id123456': {
-		text: 'lo que sesa',
-		...,
-		...
-	},
-	'id838394': {
-		text: 'otro lo que sea',
-		...
-	}
-}
-y nosotros lo queremos asi:
-[{
-	id: '123456',
-	text: 'lo que sea',
-	...,
-	...
-}]*/
 export var startAddTodos = () => {
-	return (dispatch, getState) => { //the thunk fuction
+	return (dispatch, getState) => {
 		var uid = getState().auth.uid;
 		var todosRef = firebaseRef.child(`users/${uid}/todos`);
 
-		return todosRef.once('value').then((snapshot) => {//snapshot contiene toda la informacion de la bbdd que necesito, pero me interesan los values and keys
-			var todos = snapshot.val() || {}; //obtengo los datos y si no hay datos un objeto vacio
-			var parsedTodos = [];//esto es lo que le pasare a redux, que es lo que espera un array de objetos
+		return todosRef.once('value').then((snapshot) => {
+			var todos = snapshot.val() || {};
+			var parsedTodos = [];
 
 			Object.keys(todos).forEach((todoId) => {
 				parsedTodos.push({
@@ -118,7 +98,7 @@ export var updateTodo = (id, updates) => {
 export var startToggleTodo = (id, completed) => {
 	return (dispatch, getState) => {
 		var uid = getState().auth.uid;
-		var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);//es lo mismo que ('todos/' + id)
+		var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
 		var updates = {
 			completed,
 			completedAt: completed ? moment().unix() : null

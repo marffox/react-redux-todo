@@ -26,7 +26,7 @@ module.exports = {
 		}),
 	  	new webpack.optimize.UglifyJsPlugin({
 			compressor: {
-		  		warnings: false//optimiza el bundle excluyendo los warnings, es como poner webpack -p
+		  		warnings: false
 			}
 	  	}),
 	  	new webpack.DefinePlugin({

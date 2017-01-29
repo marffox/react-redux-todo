@@ -6,14 +6,14 @@ import * as actions from 'actions';
 export class Login extends React.Component {
 	constructor (props) {
 		super(props);
-		this.onLogin = this.onLogin.bind(this);//se puede hacer de dos maneras, reescribiendo el constructor como aqui o bien haciendo el bind directamente en button, como en addTodo.jsx
+		this.onLogin = this.onLogin.bind(this);
 	}
 	onLogin () {
 		var {dispatch} = this.props;
 
 		dispatch(actions.startLogin());
 	}
-	render () {//es lo mismo que render: function() {} en es6
+	render () {
 		return (
 			<div>
 				<h1 className="page-title">Shopping List App</h1>

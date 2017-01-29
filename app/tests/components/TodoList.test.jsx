@@ -38,7 +38,6 @@ describe('TodoList', () => {
 		);
 		var todoList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedTodoList)[0];
 		var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, ConnectedTodo);
-		//cuantos componentes renderiza dentro de un componente padre. Primer argumento es el comp padre y segundo arg es el componente que renderiza dentro del padre (todos los Todo). Esto devuelve un array de componentes renderizados, por lo que tenemos que comprobar su longitud
 
 		expect(todosComponents.length).toBe(todos.length);
 	});

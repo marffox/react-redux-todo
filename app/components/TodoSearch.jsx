@@ -11,11 +11,10 @@ export class TodoSearch extends React.Component {
 			<div className="container__header">
 				<div>
 					<input type="search" ref="searchText" placeholder="Search products" value={searchText} onChange={() => {
-							{/*el codigo que ejecutamos cuando el imput cambia*/}
 							var searchText = this.refs.searchText.value;
 							dispatch(actions.setSearchText(searchText));
 					}}/>
-					{/*value: valor por defecto*/}
+
 				</div>
 				<div>
 					<label>

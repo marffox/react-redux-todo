@@ -5,8 +5,7 @@ var expect = require('expect');
 import firebase, {firebaseRef} from 'app/firebase/';
 import * as actions from 'actions';
 
-//A mock store for testing your redux async action creators and middleware. The mock store will store the dispatched actions in an array to be used in your tests.
-//Debemos usar un mockStore por cada test, no se debe compartir este entre varios tests
+
 var createMockStore = configureMockStore([thunk]);
 
 describe('Actions', () => {
