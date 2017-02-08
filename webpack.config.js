@@ -13,7 +13,7 @@ try {
 module.exports = {
 	entry: [
 		'script!jquery/dist/jquery.min.js',
-		'script!foundation-sites/dist/foundation.min.js',
+		'script!foundation-sites/dist/js/foundation.min.js',
 		'./app/app.jsx'
 	],
 	externals: {
@@ -67,13 +67,8 @@ module.exports = {
 				presets: ['react', 'es2015', 'stage-0']
 			},
 			test: /\.jsx?$/,
-			exclude: /(node_modules|bower_components)/
+			exclude: /(node_modules)/
 		}]
-	},
-	sassLoader: {
-		includePaths: [
-			path.resolve(__dirname, './node_modules/foundation-sites/scss')
-		]
 	},
 	devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };

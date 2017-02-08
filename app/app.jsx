@@ -20,10 +20,11 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 // Load foundation
+require('style!css!foundation-sites/dist/css/foundation.min.css')
 $(document).foundation();
 
 // App css
-require('style!css!sass!applicationStyles')
+require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
 	<Provider store={store}>
